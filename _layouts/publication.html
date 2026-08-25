@@ -15,7 +15,7 @@ layout: default
       {%- endif -%}
       {%- if is_research -%}
         {%- if page.volume -%}
-        <span class="mono">Vol. {{ page.volume }}{% if page.issue %} · {{ page.issue }}{% endif %}</span>
+        <span class="mono">Volume {{ page.volume }}{% if page.issue %} ({{ page.issue }}){% endif %}</span>
         {%- else -%}
         <span class="missing-field">MISSING VOLUME/ISSUE</span>
         {%- endif -%}
@@ -49,8 +49,7 @@ layout: default
   <div class="pdf-note">
     {%- if page.pdf_url contains "scholarworks" -%}
     <p><strong><a href="{{ page.pdf_url }}">Read the full paper (PDF)</a></strong></p>
-    <p>The version of record is archived in W&amp;M ScholarWorks, the university
-    library’s permanent open-access repository.</p>
+    <p>The version of record is archived in W&amp;M ScholarWorks.</p>
     {%- else -%}
     <p><strong><a href="{{ page.pdf_url | relative_url }}">Read the full paper (PDF)</a></strong></p>
     {%- endif -%}
@@ -69,17 +68,9 @@ layout: default
 
   <footer class="article-foot">
     {%- if page.keywords and page.keywords != empty -%}
-    <h2 class="visually-hidden">Keywords</h2>
-    <ul class="tag-row" aria-label="Keywords">
-      {%- for k in page.keywords -%}<li>{{ k }}</li>{%- endfor -%}
-      {%- if page.jel_codes and page.jel_codes != empty -%}
-        {%- for j in page.jel_codes -%}<li>JEL {{ j }}</li>{%- endfor -%}
-      {%- endif -%}
-    </ul>
+    <p class="kw-line"><em>Keywords:</em> {{ page.keywords | join: "; " }}.{% if page.jel_codes and page.jel_codes != empty %} <em>JEL:</em> {{ page.jel_codes | join: ", " }}.{% endif %}</p>
     {%- elsif page.jel_codes and page.jel_codes != empty -%}
-    <ul class="tag-row" aria-label="JEL codes">
-      {%- for j in page.jel_codes -%}<li>JEL {{ j }}</li>{%- endfor -%}
-    </ul>
+    <p class="kw-line"><em>JEL:</em> {{ page.jel_codes | join: ", " }}.</p>
     {%- endif -%}
 
     {%- comment -%} ── Copy-ready citations ─────────────────────────────
@@ -143,6 +134,6 @@ layout: default
       </div>
     </div>
 
-    <p><a href="{{ archive_url | relative_url }}">← All {% if is_research %}Research{% else %}Perspectives{% endif %}</a></p>
+    <p><a href="{{ archive_url | relative_url }}">All {% if is_research %}Research{% else %}Perspectives{% endif %}</a></p>
   </footer>
 </article>

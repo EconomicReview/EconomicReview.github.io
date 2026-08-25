@@ -9,18 +9,18 @@
   cadence: "Semester deadlines"
   accent: green
   description: >-
-    Original empirical or theoretical work in economics and adjacent fields —
-    strong course papers, independent research, and honors theses. Every
-    paper is anonymized before review and read by two referees.
+    Original empirical or theoretical work in economics and adjacent
+    fields, from course papers to honors theses. Every paper is anonymized
+    before review and read by two referees.
 - key: perspectives
   name: "Perspectives"
   url: /perspectives/
   tagline: "Op-eds and policy briefs"
   format: "Op-ed or policy brief, 600–1,200 words"
   review: "Editor review"
-  cadence: "Rolling — submit any time"
+  cadence: "Rolling (no deadline)"
   accent: gold
   description: >-
     Short arguments and policy analysis written for a general campus
-    audience. Perspectives are reviewed by editors rather than referees, so
-    the path from draft to publication is measured in weeks, not months.
+    audience. Perspectives go to the editors rather than referees, and
+    accepted pieces are usually published within a few weeks.

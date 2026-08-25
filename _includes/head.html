@@ -16,7 +16,7 @@
   <link rel="apple-touch-icon" href="{{ '/assets/brand/apple-touch-icon.png' | relative_url }}">
   {%- comment -%} jekyll-feed's {% raw %}{% feed_meta %}{% endraw %} only advertises the
   posts feed, so the publications feed link is written by hand. {%- endcomment -%}
-  <link rel="alternate" type="application/atom+xml" title="{{ site.data.journal.short_name }} — publications" href="{{ '/feed/publications.xml' | absolute_url }}">
+  <link rel="alternate" type="application/atom+xml" title="{{ site.data.journal.short_name }} publications feed" href="{{ '/feed/publications.xml' | absolute_url }}">
   {%- if page.layout == "publication" %}
   {% include citation-meta.html %}
   {% include jsonld-article.html %}

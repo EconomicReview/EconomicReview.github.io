@@ -9,11 +9,10 @@ description: >-
 {%- assign items = site.publications | where: "track", "research" | sort: "date" | reverse -%}
 <div class="wrap">
   <header class="page-head">
-    <p class="kicker">{{ site.data.journal.abbreviation }} · Research</p>
     <h1>Research</h1>
     <p class="lede">Full-length papers by W&amp;M students, selected by
-    double-blind review — two referees read every submission, and every
-    author receives written feedback.</p>
+    double-blind review. Two referees read each submission, and authors get
+    written comments back.</p>
   </header>
 
   {%- if items.size == 0 -%}
@@ -26,14 +25,14 @@ description: >-
         <p>The Review is reading research submissions for
         Volume {{ site.data.journal.current_volume }}
         ({{ site.data.journal.academic_year }}). The next deadline is
-        <strong>{% include next-deadline.html track="research" %}</strong>;
-        papers submitted by then are anonymized, refereed, and decided within
-        the semester, and accepted papers appear in the
+        <strong>{% include next-deadline.html track="research" %}</strong>.
+        Papers submitted by then are anonymized, refereed, and decided
+        within the semester; accepted papers appear in the
         Volume {{ site.data.journal.current_volume }} issue and in this
         archive.</p>
-        <p>Strong course papers, independent research, and honors thesis
-        chapters are all in scope — economics and adjacent fields, from any
-        W&amp;M student.</p>
+        <p>Course papers, independent projects, and honors thesis chapters
+        are all in scope, from any W&amp;M student, in economics or a
+        nearby field.</p>
         <div class="btn-row">
           <a class="btn" href="{{ '/submit/' | relative_url }}">Submission guidelines</a>
         </div>
@@ -83,9 +82,9 @@ description: >-
 
   <section class="section-rule">
     <p class="body-copy">The Review is reading submissions for the next
-    issue — the deadline is
+    issue. The deadline is
     <strong>{% include next-deadline.html track="research" %}</strong>.
-    <a href="{{ '/submit/' | relative_url }}">Submission guidelines →</a></p>
+    <a href="{{ '/submit/' | relative_url }}">Submission guidelines</a></p>
   </section>
   {%- endif -%}
 </div>

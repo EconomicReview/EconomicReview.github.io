@@ -4,7 +4,7 @@
       <div class="footer-id">
         <img class="brand-crest" src="{{ '/assets/brand/crest.svg' | relative_url }}" alt="" width="30" height="37">
         <p class="footer-name">{{ site.data.journal.name }}</p>
-        <p class="footer-tag">Research and Perspectives by {{ site.data.journal.institution }} students. Every submission receives written feedback.</p>
+        <p class="footer-tag">The undergraduate economics journal of {{ site.data.journal.institution }}.</p>
       </div>
       <div class="footer-col">
         <h2 class="footer-h">Journal</h2>
@@ -28,6 +28,7 @@
     </div>
     <div class="footer-bottom">
       <span>© {{ site.time | date: "%Y" }} {{ site.data.journal.name }}</span>
+      <button class="theme-toggle" type="button" hidden aria-pressed="false">Dark mode</button>
       <span>An independent, student-run journal. Views are the authors’ own.</span>
     </div>
   </div>

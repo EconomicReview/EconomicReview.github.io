@@ -26,9 +26,9 @@
 {%- assign track = include.pub.track | default: "research" -%}
 {%- capture kicker -%}
   {%- if track == "research" -%}
-    {{ site.data.journal.abbreviation }}{% if include.pub.volume %} · Vol. {{ include.pub.volume }}{% endif %}{% if include.pub.issue %} · {{ include.pub.issue }}{% endif %}
+    {%- if include.pub.volume -%}Vol. {{ include.pub.volume }}{% if include.pub.issue %}, {{ include.pub.issue }}{% endif %}{%- else -%}Research{%- endif -%}
   {%- else -%}
-    Perspectives · {{ include.pub.date | date: "%Y" }}
+    Perspectives, {{ include.pub.date | date: "%Y" }}
   {%- endif -%}
 {%- endcapture -%}
 <a class="cover {{ track }}{% if include.pub.cover and include.pub.cover != '' %} cover--real{% endif %}"

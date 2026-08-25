@@ -9,11 +9,9 @@ description: >-
 {%- assign items = site.publications | where: "track", "perspectives" | sort: "date" | reverse -%}
 <div class="wrap">
   <header class="page-head">
-    <p class="kicker">{{ site.data.journal.abbreviation }} · Perspectives</p>
     <h1>Perspectives</h1>
-    <p class="lede">Op-eds and policy briefs — 600 to 1,200 words of argument
-    about an economic question, by W&amp;M students, published as they are
-    accepted.</p>
+    <p class="lede">Op-eds and policy briefs of 600 to 1,200 words, by
+    W&amp;M students, published as they are accepted.</p>
   </header>
 
   {%- if items.size == 0 -%}
@@ -21,12 +19,11 @@ description: >-
   <section class="section">
     <div class="body-copy">
       <h2>Perspectives are open</h2>
-      <p>The Review reads Perspectives on a rolling basis — there is no
-      deadline and no refereeing queue. Send an argument you can support with
-      evidence: tariffs, tuition, housing, whatever you’ve been thinking
-      about. The editors read each piece, respond directly with written
-      feedback, and publish accepted pieces here, typically within a few
-      weeks of submission.</p>
+      <p>The Review reads Perspectives on a rolling basis. There is no
+      deadline, and pieces don’t wait on refereeing: the editors read each
+      one, reply with written feedback, and publish what they accept here,
+      usually within a few weeks. Send an argument you can back with
+      evidence, on whatever economic question you’ve been chewing on.</p>
       <div class="btn-row">
         <a class="btn" href="{{ '/submit/' | relative_url }}#perspectives">How to submit a Perspective</a>
       </div>
@@ -57,7 +54,7 @@ description: >-
 
   <section class="section-rule">
     <p class="body-copy">Perspectives are open year-round.
-    <a href="{{ '/submit/' | relative_url }}#perspectives">How to submit →</a></p>
+    <a href="{{ '/submit/' | relative_url }}#perspectives">How to submit</a></p>
   </section>
   {%- endif -%}
 </div>
