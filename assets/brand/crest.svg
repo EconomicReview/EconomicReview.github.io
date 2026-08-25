@@ -34,15 +34,15 @@
         <use href="#ray" transform="rotate(337.5)"/>
       </g>
       <circle r="40" fill="#C6A96B"/>
-      <!-- face -->
-      <g fill="none" stroke="#2A2415" stroke-width="3" stroke-linecap="round">
-        <path d="M -20 -10 Q -13 -16 -6 -10"/>
-        <path d="M 6 -10 Q 13 -16 20 -10"/>
-        <path d="M 0 -6 Q 3 2 0 8 Q -2 10 -4 8"/>
-        <path d="M -12 18 Q 0 26 12 18"/>
+      <!-- face: calm, engraved style — lid arcs, slender nose, small mouth -->
+      <g fill="none" stroke="#2A2415" stroke-width="2.5" stroke-linecap="round">
+        <path d="M -19 -8 Q -13 -13 -7 -8"/>
+        <path d="M 7 -8 Q 13 -13 19 -8"/>
+        <path d="M -1 -4 L -1 9 M -4 11 Q -1 13 2 11"/>
+        <path d="M -7 20 Q 0 23 7 20"/>
       </g>
-      <ellipse cx="-13" cy="-6" rx="3" ry="4" fill="#2A2415"/>
-      <ellipse cx="13" cy="-6" rx="3" ry="4" fill="#2A2415"/>
+      <ellipse cx="-13" cy="-6" rx="3.4" ry="2.4" fill="#2A2415"/>
+      <ellipse cx="13" cy="-6" rx="3.4" ry="2.4" fill="#2A2415"/>
     </g>
   </g>
 
@@ -88,9 +88,10 @@
     <circle cx="52" cy="58" r="4.5"/>
   </g>
 
-  <!-- merchant's mark -->
+  <!-- merchant's mark: a large open curve, and a bold cross at lower right -->
   <g fill="none" stroke="#004E38" stroke-linecap="square" transform="translate(298,148)">
-    <path d="M -46 -26 C -44 -70 28 -82 42 -42 C 50 -18 44 -2 30 6 C 34 12 36 20 36 28 L 36 96" stroke-width="18"/>
-    <path d="M -4 58 L 80 58" stroke-width="16"/>
+    <path d="M -48 -22 C -50 -70 30 -86 44 -44 C 52 -14 44 6 22 16" stroke-width="18"/>
+    <path d="M -12 56 L 82 56" stroke-width="16"/>
+    <path d="M 56 28 L 56 94" stroke-width="16"/>
   </g>
 </svg>
