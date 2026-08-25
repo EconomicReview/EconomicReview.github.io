@@ -1,0 +1,18 @@
+---
+layout: default
+---
+<div class="wrap">
+  <header class="page-head">
+    {%- comment -%} Front matter is not Liquid-processed, so pages that want
+    the academic year in their kicker set kicker_academic_year: true instead
+    of interpolating it. {%- endcomment -%}
+    {%- if page.kicker or page.kicker_academic_year %}
+    <p class="kicker">{% if page.kicker %}{{ page.kicker }}{% endif %}{% if page.kicker and page.kicker_academic_year %} · {% endif %}{% if page.kicker_academic_year %}{{ site.data.journal.academic_year }}{% endif %}</p>
+    {%- endif %}
+    <h1>{{ page.title }}</h1>
+    {%- if page.lede %}
+    <p class="lede">{{ page.lede }}</p>
+    {%- endif %}
+  </header>
+  {{ content }}
+</div>

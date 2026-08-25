@@ -1,0 +1,75 @@
+# The 2026–27 calendar. Update each semester when the board sets new dates.
+#
+# Fields:
+#   date     — machine date used ONLY for sorting and past/future comparison.
+#              For fuzzy entries ("late September") it is an internal sort key
+#              and is never displayed.
+#   datetime — the value for <time datetime="">. Month precision ("2026-09")
+#              is valid HTML for dates the board has not pinned down.
+#   display  — exactly what readers see.
+#   type     — deadline | decision | event
+#   track    — research | perspectives | all | org  (org = internal lifecycle,
+#              shown only on the Join page)
+- id: call-released
+  label: "Call for submissions released"
+  date: 2026-09-11
+  datetime: "2026-09-11"
+  display: "11 September 2026"
+  type: event
+  track: all
+- id: interest-meeting
+  label: "Interest meeting"
+  date: 2026-09-16
+  datetime: "2026-09-16"
+  display: "Week of 16 September 2026"
+  type: event
+  track: all
+- id: reviewer-training
+  label: "Reviewer training"
+  date: 2026-09-28
+  datetime: "2026-09"
+  display: "Late September 2026"
+  type: event
+  track: org
+- id: fall-deadline
+  label: "Fall research deadline"
+  date: 2026-10-16
+  datetime: "2026-10-16"
+  display: "Friday, 16 October 2026"
+  type: deadline
+  track: research
+- id: fall-decisions
+  label: "Fall decisions to authors"
+  date: 2026-11-20
+  datetime: "2026-11-20"
+  display: "By 20 November 2026"
+  type: decision
+  track: research
+- id: spring-deadline
+  label: "Spring research deadline"
+  date: 2027-01-29
+  datetime: "2027-01-29"
+  display: "Friday, 29 January 2027"
+  type: deadline
+  track: research
+- id: spring-decisions
+  label: "Spring decisions to authors"
+  date: 2027-03-12
+  datetime: "2027-03-12"
+  display: "By 12 March 2027"
+  type: decision
+  track: research
+- id: spring-issue
+  label: "Spring issue published"
+  date: 2027-04-25
+  datetime: "2027-04"
+  display: "Late April 2027"
+  type: event
+  track: research
+- id: elections
+  label: "Officer elections and handover"
+  date: 2027-04-15
+  datetime: "2027-04"
+  display: "April 2027"
+  type: event
+  track: org

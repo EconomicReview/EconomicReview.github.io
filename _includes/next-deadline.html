@@ -1,0 +1,22 @@
+{%- comment -%}
+  Server-side pick of the next future deadline for a track, kept fresh at
+  page view by main.js (the element is tagged data-next-deadline).
+  Usage: {% include next-deadline.html track="research" %}
+  NOTE: this file must not end with a newline — its output sits directly
+  against punctuation in running text.
+{%- endcomment -%}
+{%- assign now_epoch = site.time | date: "%s" | plus: 0 -%}
+{%- assign next_dl = nil -%}
+{%- for d in site.data.dates -%}
+  {%- if d.type == "deadline" and d.track == include.track and next_dl == nil -%}
+    {%- assign d_epoch = d.date | date: "%s" | plus: 86400 -%}
+    {%- if d_epoch >= now_epoch -%}{%- assign next_dl = d -%}{%- endif -%}
+  {%- endif -%}
+{%- endfor -%}
+<span data-next-deadline="{{ include.track }}" data-fallback="Deadlines for the next cycle will be announced here">
+  {%- if next_dl -%}
+    <time datetime="{{ next_dl.datetime }}">{{ next_dl.display }}</time>
+  {%- else -%}
+    Deadlines for the next cycle will be announced here
+  {%- endif -%}
+</span>

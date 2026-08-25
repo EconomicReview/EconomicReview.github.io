@@ -1,0 +1,19 @@
+# Site navigation. Items with `requires_track` only appear once at least one
+# publication with that track exists — a link to an empty archive never ships.
+# The homepage is reached through the wordmark, not a nav item.
+- label: "Submit"
+  url: /submit/
+- label: "Research"
+  url: /research/
+  requires_track: research
+- label: "Perspectives"
+  url: /perspectives/
+  requires_track: perspectives
+- label: "About"
+  url: /about/
+- label: "Masthead"
+  url: /masthead/
+- label: "Join"
+  url: /join/
+- label: "Contact"
+  url: /contact/

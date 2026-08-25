@@ -1,0 +1,30 @@
+---
+layout: page
+title: "Masthead"
+permalink: /masthead/
+kicker_academic_year: true
+lede: >-
+  The editorial board serves through officer elections in April.
+description: >-
+  The 2026–27 editorial board and faculty adviser of The Economic Review
+  at William & Mary.
+---
+<ul class="people">
+  {%- for person in site.data.masthead.board %}
+  <li class="person">
+    <span class="role">{{ person.role }}</span>
+    <span class="name">{{ person.name }}</span>
+    {%- if person.class_year %}
+    <span class="year">{{ person.class_year }}</span>
+    {%- endif %}
+  </li>
+  {%- endfor %}
+</ul>
+
+<section class="section-rule">
+  <h2>Faculty adviser</h2>
+  <div class="adviser-card">
+    <span class="name">{{ site.data.masthead.adviser.name }}</span>
+    <span class="year">{{ site.data.masthead.adviser.title }}</span>
+  </div>
+</section>

@@ -1,0 +1,34 @@
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-cols">
+      <div class="footer-id">
+        <img class="brand-crest" src="{{ '/assets/brand/crest.svg' | relative_url }}" alt="" width="30" height="37">
+        <p class="footer-name">{{ site.data.journal.name }}</p>
+        <p class="footer-tag">Research and Perspectives by {{ site.data.journal.institution }} students. Every submission receives written feedback.</p>
+      </div>
+      <div class="footer-col">
+        <h2 class="footer-h">Journal</h2>
+        <ul>
+          <li><a href="{{ '/submit/' | relative_url }}">Submit your work</a></li>
+          <li><a href="{{ '/about/' | relative_url }}">About the Review</a></li>
+          <li><a href="{{ '/masthead/' | relative_url }}">Masthead</a></li>
+          <li><a href="{{ '/join/' | relative_url }}">Join the staff</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h2 class="footer-h">Connect</h2>
+        <ul>
+          <li><a href="mailto:{{ site.data.journal.contact_email }}">{{ site.data.journal.contact_email }}</a></li>
+          <li><a href="{{ site.data.journal.instagram_url }}">Instagram</a></li>
+          <li><a href="{{ site.data.journal.linkedin_url }}">LinkedIn</a></li>
+          <li><a href="{{ site.data.journal.tribelink_url }}">TribeLink</a></li>
+          <li><a href="{{ '/feed/publications.xml' | relative_url }}">Atom feed</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© {{ site.time | date: "%Y" }} {{ site.data.journal.name }}</span>
+      <span>An independent, student-run journal. Views are the authors’ own.</span>
+    </div>
+  </div>
+</footer>

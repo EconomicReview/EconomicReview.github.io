@@ -1,0 +1,91 @@
+{%- comment -%}
+  Generated typographic cover. Usage:
+    {% include cover.html pub=p heading="h3" %}            → cover with title
+    {% include cover.html pub=p decorative=true %}         → motif-only thumb
+                                                             (hidden from AT;
+                                                             pair with a real
+                                                             text link)
+  A real image in `cover:` front matter overrides the generated cover.
+  The motif is chosen by hashing the slug, so a cover never changes between
+  builds. The title is real HTML text (not SVG), so it wraps, scales, and is
+  read by assistive tech; the motif SVG is decorative and aria-hidden.
+{%- endcomment -%}
+{%- assign slug = include.pub.url | split: "/" | last -%}
+{%- assign h = 0 -%}
+{%- assign chars = slug | split: "" -%}
+{%- for c in chars -%}
+  {%- case c -%}
+    {%- when "b","h","n","t","z","5" -%}{%- assign h = h | plus: 1 -%}
+    {%- when "c","i","o","u","0","6" -%}{%- assign h = h | plus: 2 -%}
+    {%- when "d","j","p","v","1","7" -%}{%- assign h = h | plus: 3 -%}
+    {%- when "e","k","q","w","2","8" -%}{%- assign h = h | plus: 4 -%}
+    {%- when "f","l","r","x","3","9" -%}{%- assign h = h | plus: 5 -%}
+  {%- endcase -%}
+{%- endfor -%}
+{%- assign motif = h | modulo: 6 -%}
+{%- assign track = include.pub.track | default: "research" -%}
+{%- capture kicker -%}
+  {%- if track == "research" -%}
+    {{ site.data.journal.abbreviation }}{% if include.pub.volume %} · Vol. {{ include.pub.volume }}{% endif %}{% if include.pub.issue %} · {{ include.pub.issue }}{% endif %}
+  {%- else -%}
+    Perspectives · {{ include.pub.date | date: "%Y" }}
+  {%- endif -%}
+{%- endcapture -%}
+<a class="cover {{ track }}{% if include.pub.cover and include.pub.cover != '' %} cover--real{% endif %}"
+   href="{{ include.pub.url | relative_url }}"
+   {% if include.decorative %}aria-hidden="true" tabindex="-1"{% endif %}>
+  {%- if include.pub.cover and include.pub.cover != "" -%}
+    <img src="{{ include.pub.cover | relative_url }}" alt="" loading="lazy" width="800" height="600">
+  {%- else -%}
+    {%- case motif -%}
+    {%- when 0 -%}
+    <svg class="cover-motif" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+      <g fill="none" stroke="currentColor" stroke-opacity="0.32" stroke-width="1.5">
+        <circle cx="400" cy="300" r="90"/><circle cx="400" cy="300" r="150"/>
+        <circle cx="400" cy="300" r="210"/><circle cx="400" cy="300" r="270"/>
+      </g>
+    </svg>
+    {%- when 1 -%}
+    <svg class="cover-motif" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+      <g fill="none" stroke="currentColor" stroke-opacity="0.3" stroke-width="1.5">
+        <path d="M -40 320 L 260 -40"/><path d="M 40 320 L 340 -40"/>
+        <path d="M 120 320 L 420 -40"/><path d="M 200 320 L 500 -40"/>
+      </g>
+    </svg>
+    {%- when 2 -%}
+    <svg class="cover-motif" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+      <circle cx="316" cy="76" r="110" fill="none" stroke="currentColor" stroke-opacity="0.32" stroke-width="1.5"/>
+      <circle cx="316" cy="76" r="16" fill="currentColor" fill-opacity="0.3"/>
+    </svg>
+    {%- when 3 -%}
+    <svg class="cover-motif" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+      <g fill="none" stroke="currentColor" stroke-opacity="0.3" stroke-width="1.5">
+        <path d="M 20 240 L 200 140 L 380 240"/>
+        <path d="M 20 300 L 200 200 L 380 300"/>
+        <path d="M 20 180 L 200 80 L 380 180"/>
+      </g>
+    </svg>
+    {%- when 4 -%}
+    <svg class="cover-motif" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+      <g fill="none" stroke="currentColor" stroke-opacity="0.28" stroke-width="1">
+        <path d="M 0 60 H 400"/><path d="M 0 105 H 400"/><path d="M 0 150 H 400"/>
+        <path d="M 0 195 H 400"/><path d="M 0 240 H 400"/><path d="M 0 285 H 400"/>
+      </g>
+      <path d="M 0 60 V 300" fill="none" stroke="currentColor" stroke-opacity="0.28" stroke-width="1" transform="translate(64,0)"/>
+    </svg>
+    {%- when 5 -%}
+    <svg class="cover-motif" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+      <g fill="none" stroke="currentColor" stroke-opacity="0.3" stroke-width="1.5">
+        <path d="M 430 -20 L 20 300"/><path d="M 430 -20 L 120 320"/>
+        <path d="M 430 -20 L 240 330"/><path d="M 430 -20 L 360 330"/>
+        <path d="M 430 -20 L -40 160"/>
+      </g>
+    </svg>
+    {%- endcase -%}
+    <span class="cover-kicker">{{ kicker | strip }}</span>
+    {%- unless include.decorative -%}
+      {%- assign tag = include.heading | default: "span" -%}
+      <{{ tag }} class="cover-title">{{ include.pub.title }}</{{ tag }}>
+    {%- endunless -%}
+  {%- endif -%}
+</a>

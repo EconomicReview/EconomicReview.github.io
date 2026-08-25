@@ -1,0 +1,26 @@
+# The Review's two publication tracks. `key` must match the `track` value in
+# publication front matter; `accent` maps to the design tokens in main.css.
+- key: research
+  name: "Research"
+  url: /research/
+  tagline: "Full-length research papers"
+  format: "Full-length research paper"
+  review: "Double-blind review by two referees"
+  cadence: "Semester deadlines"
+  accent: green
+  description: >-
+    Original empirical or theoretical work in economics and adjacent fields —
+    strong course papers, independent research, and honors theses. Every
+    paper is anonymized before review and read by two referees.
+- key: perspectives
+  name: "Perspectives"
+  url: /perspectives/
+  tagline: "Op-eds and policy briefs"
+  format: "Op-ed or policy brief, 600–1,200 words"
+  review: "Editor review"
+  cadence: "Rolling — submit any time"
+  accent: gold
+  description: >-
+    Short arguments and policy analysis written for a general campus
+    audience. Perspectives are reviewed by editors rather than referees, so
+    the path from draft to publication is measured in weeks, not months.

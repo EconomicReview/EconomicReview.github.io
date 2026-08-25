@@ -1,0 +1,132 @@
+---
+layout: default
+title: "Submit your work"
+description: >-
+  How to submit to The Economic Review at William & Mary: research papers
+  reviewed double-blind against semester deadlines, and 600–1,200 word
+  Perspectives reviewed on a rolling basis. Every submission receives
+  written feedback.
+permalink: /submit/
+---
+<div class="wrap">
+  <header class="page-head">
+    <p class="kicker">Volume {{ site.data.journal.current_volume }} · {{ site.data.journal.academic_year }}</p>
+    <h1>Submit your work</h1>
+    <p class="lede">Any William &amp; Mary student can submit — any major, any
+    year. We publish work in economics and adjacent fields: public policy,
+    finance, economic history, and data science applied to economic
+    questions.</p>
+  </header>
+
+  <div class="deadline-banner" role="note">
+    <span><span class="label">Research deadline</span><br>
+      <span class="date">{% include next-deadline.html track="research" %}</span></span>
+    <span><span class="label">Perspectives</span><br>
+      <span class="date">Rolling — submit any time</span></span>
+    <span class="cta"><a class="btn" href="{{ site.data.journal.submission_form_url }}">Open the submission form</a></span>
+  </div>
+
+  <section class="section">
+    <div class="callout">
+      <h2>Every submission gets written feedback</h2>
+      <p>Whatever the decision, you will receive substantive written comments
+      on your work — from two referees for research, from the editors for
+      Perspectives. A rejection from the Review still leaves you with a
+      better paper. Most journals don’t do this; we consider it the point.</p>
+    </div>
+  </section>
+
+  <section class="section-rule">
+    <h2>Choose your track</h2>
+    <div class="tracks tracks--spaced">
+      <div class="track-card research" id="research">
+        <h3>Research</h3>
+        <p class="tagline">Full-length research papers</p>
+        <p>Original empirical or theoretical work — a strong course paper, an
+        independent project, or an honors thesis chapter all qualify. Papers
+        are anonymized and read by two referees; the board decides on their
+        recommendation.</p>
+        <dl>
+          <dt>Review</dt><dd>Double-blind, two referees</dd>
+          <dt>Deadline</dt><dd>{% include next-deadline.html track="research" %}</dd>
+          <dt>Abstract</dt><dd>150–250 words, submitted with the paper</dd>
+          <dt>Published</dt><dd>In the Volume {{ site.data.journal.current_volume }} issue and on this site; the version of record is deposited in W&amp;M ScholarWorks</dd>
+        </dl>
+      </div>
+      <div class="track-card perspectives" id="perspectives">
+        <h3>Perspectives</h3>
+        <p class="tagline">Op-eds and policy briefs, 600–1,200 words</p>
+        <p>An argument about an economic question, written for a general
+        campus audience — tariffs, tuition, housing in Williamsburg, whatever
+        you can support with evidence. This is the fastest way into print:
+        editor review, no semester deadline.</p>
+        <dl>
+          <dt>Review</dt><dd>Editor review</dd>
+          <dt>Deadline</dt><dd>Rolling — submit any time</dd>
+          <dt>Length</dt><dd>600–1,200 words, with sources linked</dd>
+          <dt>Published</dt><dd>On this site as accepted, typically within weeks</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-rule">
+    <div class="two-col">
+      <div class="body-copy">
+        <h2>Preparing a research submission</h2>
+        <p>Research manuscripts are reviewed blind, so the file you upload
+        must not identify you:</p>
+        <ul>
+          <li>Remove your name, acknowledgements, and anything that names
+          your section, professor, or co-authors from the manuscript.</li>
+          <li>Strip the document metadata too — in Word, use
+          <em>File&nbsp;→ Info&nbsp;→ Inspect Document</em>; exported PDFs
+          inherit the author field from the source file.</li>
+          <li>Upload a separate title page with the title, all authors and
+          emails, and your class year — only the Editor-in-Chief sees it.</li>
+          <li>Include an abstract of 150–250 words and your word count.</li>
+          <li>Add 3–5 keywords; JEL codes are welcome but optional.</li>
+          <li>If the paper uses data, be ready to state what the data are and
+          whether you can share them and your code.</li>
+        </ul>
+        <h2>Preparing a Perspective</h2>
+        <ul>
+          <li>Lead with your thesis — the form asks for it in one sentence.</li>
+          <li>Keep it between 600 and 1,200 words.</li>
+          <li>Link your sources; claims need evidence even at op-ed length.</li>
+        </ul>
+        <h2>For every submission</h2>
+        <ul>
+          <li>The work must be your own, and not under consideration at
+          another publication while we review it.</li>
+          <li>The form asks how, if at all, AI tools were used in the
+          research and writing — answer candidly.</li>
+          <li>Accepted work is published under your name on this site, and
+          research is deposited in W&amp;M ScholarWorks, the library’s
+          permanent open-access repository; the form asks for your consent.</li>
+          <li>Co-authors from other institutions are welcome; the submitting
+          author must be a current W&amp;M student.</li>
+        </ul>
+      </div>
+      <div>
+        <h2>After you submit</h2>
+        <p>Research follows the semester cycle below. Perspectives skip it
+        entirely: the editors read your piece and come back to you directly,
+        typically within a few weeks.</p>
+        {% include timeline.html tracks="research,all" %}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-rule">
+    <h2>Ready?</h2>
+    <p class="body-copy">The form takes about ten minutes. It also asks
+    whether you’d be willing to referee for the Review — reviewers read at
+    most two papers a cycle, and it’s the best way to learn what makes a
+    paper publishable.</p>
+    <div class="btn-row">
+      <a class="btn" href="{{ site.data.journal.submission_form_url }}">Open the submission form</a>
+      <a class="btn btn--ghost" href="mailto:{{ site.data.journal.contact_email }}">Ask a question first</a>
+    </div>
+  </section>
+</div>

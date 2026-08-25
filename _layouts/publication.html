@@ -1,0 +1,148 @@
+---
+layout: default
+---
+{%- assign is_research = false -%}
+{%- if page.track == "research" -%}{%- assign is_research = true -%}{%- endif -%}
+{%- assign archive_url = "/perspectives/" -%}
+{%- if is_research -%}{%- assign archive_url = "/research/" -%}{%- endif -%}
+<article class="wrap">
+  <header class="article-head">
+    <p class="meta-line">
+      {%- if page.track -%}
+      <a class="track-label {{ page.track }}" href="{{ archive_url | relative_url }}">{{ page.track | capitalize }}</a>
+      {%- else -%}
+      <span class="missing-field">MISSING TRACK</span>
+      {%- endif -%}
+      {%- if is_research -%}
+        {%- if page.volume -%}
+        <span class="mono">Vol. {{ page.volume }}{% if page.issue %} · {{ page.issue }}{% endif %}</span>
+        {%- else -%}
+        <span class="missing-field">MISSING VOLUME/ISSUE</span>
+        {%- endif -%}
+      {%- endif -%}
+      <time datetime="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: "%-d %B %Y" }}</time>
+    </p>
+    <h1>{{ page.title }}</h1>
+    {%- if page.authors -%}
+    <p class="article-byline">{% include authors-line.html pub=page detail=true %}</p>
+    {%- else -%}
+    <p class="article-byline"><span class="missing-field">MISSING AUTHORS</span></p>
+    {%- endif -%}
+  </header>
+
+  <hr class="article-rule">
+
+  {%- if is_research -%}
+    {%- if page.abstract -%}
+    <section class="abstract">
+      <h2>Abstract</h2>
+      <p>{{ page.abstract }}</p>
+    </section>
+    {%- else -%}
+    <p><span class="missing-field">MISSING ABSTRACT</span></p>
+    {%- endif -%}
+  {%- endif -%}
+
+  {%- assign body = content | strip -%}
+
+  {%- if page.pdf_url and page.pdf_url != "" -%}
+  <div class="pdf-note">
+    {%- if page.pdf_url contains "scholarworks" -%}
+    <p><strong><a href="{{ page.pdf_url }}">Read the full paper (PDF)</a></strong></p>
+    <p>The version of record is archived in W&amp;M ScholarWorks, the university
+    library’s permanent open-access repository.</p>
+    {%- else -%}
+    <p><strong><a href="{{ page.pdf_url | relative_url }}">Read the full paper (PDF)</a></strong></p>
+    {%- endif -%}
+  </div>
+  {%- endif -%}
+
+  {%- if body != "" -%}
+  <div class="prose">
+    {{ content }}
+  </div>
+  {%- elsif page.pdf_url == nil or page.pdf_url == "" -%}
+  <p><span class="missing-field">MISSING BODY — a publication needs either body text or a pdf_url</span></p>
+  {%- endif -%}
+
+  <hr class="article-rule">
+
+  <footer class="article-foot">
+    {%- if page.keywords and page.keywords != empty -%}
+    <h2 class="visually-hidden">Keywords</h2>
+    <ul class="tag-row" aria-label="Keywords">
+      {%- for k in page.keywords -%}<li>{{ k }}</li>{%- endfor -%}
+      {%- if page.jel_codes and page.jel_codes != empty -%}
+        {%- for j in page.jel_codes -%}<li>JEL {{ j }}</li>{%- endfor -%}
+      {%- endif -%}
+    </ul>
+    {%- elsif page.jel_codes and page.jel_codes != empty -%}
+    <ul class="tag-row" aria-label="JEL codes">
+      {%- for j in page.jel_codes -%}<li>JEL {{ j }}</li>{%- endfor -%}
+    </ul>
+    {%- endif -%}
+
+    {%- comment -%} ── Copy-ready citations ─────────────────────────────
+    Name inversion assumes "Given [Middle] Surname". For suffixes or
+    multi-word surnames, set the names carefully — see CLAUDE.md.
+    {%- endcomment -%}
+    {%- assign yr = page.date | date: "%Y" -%}
+    {%- assign n_auth = page.authors | size -%}
+    {%- capture chicago_authors -%}
+      {%- for a in page.authors -%}
+        {%- assign parts = a.name | split: " " -%}
+        {%- if parts.size == 1 -%}
+          {%- capture nm_inv %}{{ a.name }}{% endcapture -%}
+          {%- capture nm_fwd %}{{ a.name }}{% endcapture -%}
+        {%- else -%}
+          {%- assign surname = parts | last -%}
+          {%- assign gc = parts.size | minus: 1 -%}
+          {%- comment -%} A conditional whose body is only a space renders
+          nothing in this Liquid version, so the joiner space is &#32;. {%- endcomment -%}
+          {%- capture given %}{% for p in parts limit: gc %}{{ p }}{% unless forloop.last %}&#32;{% endunless %}{% endfor %}{% endcapture -%}
+          {%- capture nm_inv %}{{ surname }}, {{ given }}{% endcapture -%}
+          {%- capture nm_fwd %}{{ given }} {{ surname }}{% endcapture -%}
+        {%- endif -%}
+        {%- if forloop.first -%}{{ nm_inv }}
+        {%- elsif forloop.last and n_auth == 2 %} and {{ nm_fwd }}
+        {%- elsif forloop.last %}, and {{ nm_fwd }}
+        {%- else %}, {{ nm_fwd }}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endcapture -%}
+    {%- capture apa_authors -%}
+      {%- for a in page.authors -%}
+        {%- assign parts = a.name | split: " " -%}
+        {%- if parts.size == 1 -%}
+          {%- capture nm %}{{ a.name }}{% endcapture -%}
+        {%- else -%}
+          {%- assign surname = parts | last -%}
+          {%- assign gc = parts.size | minus: 1 -%}
+          {%- capture initials %}{% for p in parts limit: gc %}{{ p | slice: 0 }}.{% unless forloop.last %}&#32;{% endunless %}{% endfor %}{% endcapture -%}
+          {%- capture nm %}{{ surname }}, {{ initials }}{% endcapture -%}
+        {%- endif -%}
+        {%- if forloop.first -%}{{ nm }}
+        {%- elsif forloop.last %}, &amp; {{ nm }}
+        {%- else %}, {{ nm }}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endcapture -%}
+    <div class="citation-block">
+      <h2>Cite this article</h2>
+      <div class="citation">
+        <span class="citation-style">Chicago</span>
+        <p>{{ chicago_authors | strip }}. {{ yr }}. &ldquo;{{ page.title }}.&rdquo;
+          <em>{{ site.data.journal.name }}</em>{% if page.volume %} {{ page.volume }}{% if page.issue %} ({{ page.issue }}){% endif %}{% else %}, {{ page.date | date: "%-d %B %Y" }}{% endif %}.
+          {{ page.url | absolute_url }}.</p>
+      </div>
+      <div class="citation">
+        <span class="citation-style">APA</span>
+        <p>{{ apa_authors | strip }} ({% if page.volume %}{{ yr }}{% else %}{{ yr }}, {{ page.date | date: "%B %-d" }}{% endif %}). {{ page.title }}.
+          <em>{{ site.data.journal.name }}</em>{% if page.volume %}, {{ page.volume }}{% if page.issue %}({{ page.issue }}){% endif %}{% endif %}.
+          {{ page.url | absolute_url }}</p>
+      </div>
+    </div>
+
+    <p><a href="{{ archive_url | relative_url }}">← All {% if is_research %}Research{% else %}Perspectives{% endif %}</a></p>
+  </footer>
+</article>

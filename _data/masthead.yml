@@ -1,0 +1,26 @@
+# 2026–27 editorial board. Update every April after officer elections.
+# Roles with no name must be DELETED, not left blank — the masthead template
+# renders exactly what is here.
+board:
+  - role: "Editor-in-Chief"
+    name: "Cooper Stillick"
+    class_year: "Junior"
+  - role: "Managing Editor"
+    name: "Nicole Zajac"
+    class_year: "Junior"
+  - role: "Associate Editor"
+    name: "Theodore Hanna"
+    class_year: "Junior"
+  - role: "Associate Editor"
+    name: "George Solari"
+    class_year: "Senior"
+  - role: "Associate Editor"
+    name: "Adam Lederman"
+    class_year: "Senior"
+  - role: "Treasurer"
+    name: "Leo Roberto"
+    class_year: "Junior"
+
+adviser:
+  name: "Peter McHenry"
+  title: "Paul R. Verkuil Professor of Public Policy and Economics and Department Chair"

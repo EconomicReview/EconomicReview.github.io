@@ -1,0 +1,44 @@
+---
+layout: null
+permalink: /feed.xml
+---
+<?xml version="1.0" encoding="utf-8"?>
+{% comment %}
+  Hand-written Atom feed of publications. This source file exists so that
+  jekyll-feed does NOT generate its default /feed.xml here — that default is
+  a POSTS feed, and this site has no posts, so it would be a valid but
+  permanently empty feed. This template mirrors the publications feed that
+  jekyll-feed generates at /feed/publications.xml.
+{% endcomment %}
+{%- assign pubs = site.publications | sort: "date" | reverse -%}
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <title>{{ site.data.journal.name | xml_escape }}</title>
+  <subtitle>{{ site.description | strip_newlines | xml_escape }}</subtitle>
+  <id>{{ site.url }}/</id>
+  <link href="{{ site.url }}/" />
+  <link rel="self" type="application/atom+xml" href="{{ '/feed.xml' | absolute_url }}" />
+  {%- if pubs.size > 0 %}
+  <updated>{{ pubs.first.date | date_to_xmlschema }}</updated>
+  {%- else %}
+  <updated>{{ site.time | date_to_xmlschema }}</updated>
+  {%- endif %}
+  <author><name>{{ site.data.journal.name | xml_escape }}</name></author>
+  {%- for p in pubs limit: 20 %}
+  <entry>
+    <title>{{ p.title | xml_escape }}</title>
+    <id>{{ p.url | absolute_url }}</id>
+    <link href="{{ p.url | absolute_url }}" />
+    <published>{{ p.date | date_to_xmlschema }}</published>
+    <updated>{{ p.date | date_to_xmlschema }}</updated>
+    {%- for a in p.authors %}
+    <author><name>{{ a.name | xml_escape }}</name></author>
+    {%- endfor %}
+    <category term="{{ p.track | xml_escape }}" />
+    {%- if p.abstract %}
+    <summary>{{ p.abstract | xml_escape }}</summary>
+    {%- elsif p.card_excerpt %}
+    <summary>{{ p.card_excerpt | xml_escape }}</summary>
+    {%- endif %}
+  </entry>
+  {%- endfor %}
+</feed>

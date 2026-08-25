@@ -1,0 +1,63 @@
+---
+layout: default
+title: "Perspectives"
+permalink: /perspectives/
+description: >-
+  Short-form op-eds and policy briefs on economic questions by William &
+  Mary students, published by The Economic Review on a rolling basis.
+---
+{%- assign items = site.publications | where: "track", "perspectives" | sort: "date" | reverse -%}
+<div class="wrap">
+  <header class="page-head">
+    <p class="kicker">{{ site.data.journal.abbreviation }} · Perspectives</p>
+    <h1>Perspectives</h1>
+    <p class="lede">Op-eds and policy briefs — 600 to 1,200 words of argument
+    about an economic question, by W&amp;M students, published as they are
+    accepted.</p>
+  </header>
+
+  {%- if items.size == 0 -%}
+  {%- comment -%} State 0, stated as fact. {%- endcomment -%}
+  <section class="section">
+    <div class="body-copy">
+      <h2>Perspectives are open</h2>
+      <p>The Review reads Perspectives on a rolling basis — there is no
+      deadline and no refereeing queue. Send an argument you can support with
+      evidence: tariffs, tuition, housing, whatever you’ve been thinking
+      about. The editors read each piece, respond directly with written
+      feedback, and publish accepted pieces here, typically within a few
+      weeks of submission.</p>
+      <div class="btn-row">
+        <a class="btn" href="{{ '/submit/' | relative_url }}#perspectives">How to submit a Perspective</a>
+      </div>
+    </div>
+  </section>
+
+  {%- else -%}
+  {%- comment -%} A rolling stream grouped by year, never paginated. {%- endcomment -%}
+  {%- assign years = items | group_by_exp: "p", "p.date | date: '%Y'" -%}
+  {%- for yr in years %}
+  <section class="{% unless forloop.first %}section-rule {% endunless %}section">
+    <h2 class="volume-head">{{ yr.name }}</h2>
+    {%- if yr.items.size < 3 -%}
+    <ul class="pub-list">
+      {%- for p in yr.items -%}
+      <li>{% include pub-row.html pub=p %}</li>
+      {%- endfor -%}
+    </ul>
+    {%- else -%}
+    <div class="pub-grid">
+      {%- for p in yr.items -%}
+      {% include pub-card.html pub=p %}
+      {%- endfor -%}
+    </div>
+    {%- endif -%}
+  </section>
+  {%- endfor %}
+
+  <section class="section-rule">
+    <p class="body-copy">Perspectives are open year-round.
+    <a href="{{ '/submit/' | relative_url }}#perspectives">How to submit →</a></p>
+  </section>
+  {%- endif -%}
+</div>

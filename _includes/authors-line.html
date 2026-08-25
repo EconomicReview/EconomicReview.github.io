@@ -1,0 +1,19 @@
+{%- comment -%}
+  Renders "A", "A and B", or "A, B, and C" from a publication's authors list.
+  Pass detail=true to append class years and non-W&M affiliations.
+{%- endcomment -%}
+{%- assign n = include.pub.authors | size -%}
+{%- for a in include.pub.authors -%}
+  {%- capture one -%}
+    {{- a.name -}}
+    {%- if include.detail -%}
+      {%- if a.class_year %} ’{{ a.class_year | append: "" | slice: 2, 2 }}{% endif -%}
+      {%- if a.affiliation and a.affiliation != site.data.journal.institution %} <span class="aff">({{ a.affiliation }})</span>{% endif -%}
+    {%- endif -%}
+  {%- endcapture -%}
+  {%- if forloop.first -%}{{ one }}
+  {%- elsif forloop.last and n == 2 %} and {{ one }}
+  {%- elsif forloop.last %}, and {{ one }}
+  {%- else %}, {{ one }}
+  {%- endif -%}
+{%- endfor -%}

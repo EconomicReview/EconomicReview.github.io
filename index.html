@@ -1,0 +1,172 @@
+---
+layout: default
+title: "The Economic Review at William & Mary"
+description: >-
+  The undergraduate economics journal of William & Mary. Peer-reviewed
+  research and short-form Perspectives by W&M students, with written
+  feedback on every submission.
+---
+{%- assign research_count = site.publications | where: "track", "research" | size -%}
+{%- assign persp_count = site.publications | where: "track", "perspectives" | size -%}
+{%- assign total = research_count | plus: persp_count -%}
+
+<section class="lead">
+  <div class="wrap">
+    <p class="kicker">Volume {{ site.data.journal.current_volume }} · {{ site.data.journal.academic_year }} · Call for submissions</p>
+    <h1>Economics research and commentary by William&nbsp;&amp;&nbsp;Mary students.</h1>
+    <p class="lede">The Economic Review is W&amp;M’s undergraduate economics journal.
+    We publish research papers selected by double-blind review and short-form
+    Perspectives on economic questions — and every author who submits receives
+    written feedback, whatever the decision.</p>
+    <div class="btn-row">
+      <a class="btn" href="{{ '/submit/' | relative_url }}">Submission guidelines</a>
+      <a class="btn btn--ghost" href="{{ '/join/' | relative_url }}">Join the staff</a>
+    </div>
+    <div class="deadline-line">
+      <p class="item"><span class="tag research">Research</span>
+        <span><strong>Next deadline:</strong> {% include next-deadline.html track="research" %}</span></p>
+      <p class="item"><span class="tag perspectives">Perspectives</span>
+        <span>Rolling — submit any time</span></p>
+    </div>
+  </div>
+</section>
+
+{%- if total > 0 -%}
+{%- assign pubs = site.publications | sort: "date" | reverse -%}
+{%- assign featured = pubs | where: "featured", true | first -%}
+{%- unless featured -%}{%- assign featured = pubs | first -%}{%- endunless -%}
+<section class="featured">
+  <div class="wrap">
+    <div>
+      <p class="kicker">Featured · {{ featured.track | capitalize }}{% if featured.volume %} · Vol. {{ featured.volume }}{% if featured.issue %}, {{ featured.issue }}{% endif %}{% endif %}</p>
+      <h2><a href="{{ featured.url | relative_url }}">{{ featured.title }}</a></h2>
+      {%- if featured.authors -%}
+      <p class="pub-authors">{% include authors-line.html pub=featured %}</p>
+      {%- endif -%}
+      {%- if featured.card_excerpt -%}
+      <p class="abstract-snip">{{ featured.card_excerpt }}</p>
+      {%- endif -%}
+    </div>
+    {% include cover.html pub=featured decorative=true %}
+  </div>
+</section>
+
+{%- assign rest = pubs | where_exp: "p", "p.url != featured.url" -%}
+{%- if rest.size > 0 -%}
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Latest</h2>
+      {%- if research_count > 0 and persp_count > 0 -%}
+      <a class="more" href="{{ '/research/' | relative_url }}">Research archive →</a>
+      {%- elsif research_count > 0 -%}
+      <a class="more" href="{{ '/research/' | relative_url }}">Research archive →</a>
+      {%- else -%}
+      <a class="more" href="{{ '/perspectives/' | relative_url }}">All Perspectives →</a>
+      {%- endif -%}
+    </div>
+    {%- if rest.size < 3 -%}
+    <ul class="pub-list">
+      {%- for p in rest limit: 6 -%}
+      <li>{% include pub-row.html pub=p %}</li>
+      {%- endfor -%}
+    </ul>
+    {%- else -%}
+    <div class="pub-grid">
+      {%- for p in rest limit: 6 -%}
+      {% include pub-card.html pub=p %}
+      {%- endfor -%}
+    </div>
+    {%- endif -%}
+  </div>
+</section>
+{%- endif -%}
+{%- endif -%}
+
+<section class="{% if total > 0 %}section-rule{% else %}section{% endif %} wrap">
+  <div class="section-head">
+    <h2>Two ways to publish</h2>
+  </div>
+  <div class="tracks">
+    {%- for t in site.data.tracks %}
+    <div class="track-card {{ t.key }}">
+      <h3>{{ t.name }}</h3>
+      <p class="tagline">{{ t.tagline }}</p>
+      <p>{{ t.description }}</p>
+      <dl>
+        <dt>Format</dt><dd>{{ t.format }}</dd>
+        <dt>Review</dt><dd>{{ t.review }}</dd>
+        {%- if t.key == "research" %}
+        <dt>Deadline</dt><dd>{% include next-deadline.html track="research" %}</dd>
+        {%- else %}
+        <dt>Deadline</dt><dd>{{ t.cadence }}</dd>
+        {%- endif %}
+      </dl>
+      {%- if t.key == "research" -%}
+        {%- if research_count > 0 -%}
+        <a class="track-cta" href="{{ '/research/' | relative_url }}">Browse the research archive →</a>
+        {%- else -%}
+        <a class="track-cta" href="{{ '/submit/' | relative_url }}#research">How to submit research →</a>
+        {%- endif -%}
+      {%- else -%}
+        {%- if persp_count > 0 -%}
+        <a class="track-cta" href="{{ '/perspectives/' | relative_url }}">Browse Perspectives →</a>
+        {%- else -%}
+        <a class="track-cta" href="{{ '/submit/' | relative_url }}#perspectives">How to submit a Perspective →</a>
+        {%- endif -%}
+      {%- endif -%}
+    </div>
+    {%- endfor %}
+  </div>
+</section>
+
+<section class="section-rule wrap">
+  <div class="two-col">
+    <div>
+      <h2>What happens to your paper</h2>
+      <p>Research submissions are anonymized before anyone reads them; only the
+      Editor-in-Chief can connect a manuscript to its author. Two referees
+      read each paper independently and the board decides on their
+      recommendation. Perspectives go straight to the editors.</p>
+      <div class="callout">
+        <h3>Written feedback, every time</h3>
+        <p>Every submission — accepted or not — receives written feedback from
+        its readers. You will never get a bare no.</p>
+      </div>
+    </div>
+    <div>
+      <h2 class="visually-hidden">The {{ site.data.journal.academic_year }} calendar</h2>
+      {% include timeline.html tracks="research,all" %}
+    </div>
+  </div>
+</section>
+
+<section class="section-rule wrap">
+  <div class="section-head">
+    <h2>Edited by students</h2>
+    <a class="more" href="{{ '/masthead/' | relative_url }}">Full masthead →</a>
+  </div>
+  {%- assign eic = site.data.masthead.board | where: "role", "Editor-in-Chief" | first -%}
+  <p class="body-copy">The Review is run by a {{ site.data.masthead.board | size }}-member
+  student board{% if eic %}, led by Editor-in-Chief {{ eic.name }}{% endif %},
+  and advised by {{ site.data.masthead.adviser.name }},
+  {{ site.data.masthead.adviser.title }}. The board is editorially independent:
+  what the Review publishes is decided by students.</p>
+  <div class="btn-row">
+    <a class="btn btn--ghost" href="{{ '/join/' | relative_url }}">Become an editor or reviewer</a>
+  </div>
+</section>
+
+<section class="section-rule wrap">
+  <h2>Get in touch</h2>
+  <p class="body-copy">Questions about a submission, the review process, or
+  working with the Review?</p>
+  <dl class="fact-list">
+    <dt>Email</dt>
+    <dd><a href="mailto:{{ site.data.journal.contact_email }}">{{ site.data.journal.contact_email }}</a></dd>
+    <dt>Instagram</dt>
+    <dd><a href="{{ site.data.journal.instagram_url }}">@wmeconomicreview</a></dd>
+    <dt>TribeLink</dt>
+    <dd><a href="{{ site.data.journal.tribelink_url }}">The Economic Review</a></dd>
+  </dl>
+</section>

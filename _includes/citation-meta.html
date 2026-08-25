@@ -1,0 +1,31 @@
+{%- comment -%}
+  Google Scholar (Highwire) tags. Rules that matter (verified against
+  Scholar's inclusion guidelines):
+  · citation_pdf_url is ONLY emitted for a PDF hosted on this site — an
+    off-domain (ScholarWorks) PDF won't be indexed from here and can
+    suppress the record. ScholarWorks emits its own tags for its copy.
+  · Never emit citation_issn or citation_doi: the Review has neither.
+{%- endcomment -%}
+<meta name="citation_title" content="{{ page.title | escape }}">
+{% for a in page.authors -%}
+<meta name="citation_author" content="{{ a.name | escape }}">
+{% endfor -%}
+<meta name="citation_publication_date" content="{{ page.date | date: '%Y/%m/%d' }}">
+<meta name="citation_journal_title" content="{{ site.data.journal.name | escape }}">
+{%- if page.volume %}
+<meta name="citation_volume" content="{{ page.volume }}">
+{%- endif %}
+{%- if page.issue %}
+<meta name="citation_issue" content="{{ page.issue | escape }}">
+{%- endif %}
+{%- if page.firstpage %}
+<meta name="citation_firstpage" content="{{ page.firstpage }}">
+{%- endif %}
+{%- if page.lastpage %}
+<meta name="citation_lastpage" content="{{ page.lastpage }}">
+{%- endif %}
+{%- if page.pdf_url and page.pdf_url != "" %}
+{%- unless page.pdf_url contains "://" %}
+<meta name="citation_pdf_url" content="{{ page.pdf_url | absolute_url }}">
+{%- endunless %}
+{%- endif %}

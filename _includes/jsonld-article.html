@@ -1,0 +1,36 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ScholarlyArticle",
+  "headline": {{ page.title | jsonify }},
+  "author": [
+    {%- for a in page.authors %}
+    {
+      "@type": "Person",
+      "name": {{ a.name | jsonify }}{% if a.affiliation %},
+      "affiliation": { "@type": "CollegeOrUniversity", "name": {{ a.affiliation | jsonify }} }{% else %},
+      "affiliation": { "@type": "CollegeOrUniversity", "name": {{ site.data.journal.institution | jsonify }} }{% endif %}
+    }{% unless forloop.last %},{% endunless %}
+    {%- endfor %}
+  ],
+  "datePublished": "{{ page.date | date: '%Y-%m-%d' }}",
+  "url": "{{ page.url | absolute_url }}",
+  {%- if page.abstract %}
+  "abstract": {{ page.abstract | jsonify }},
+  {%- endif %}
+  {%- if page.keywords and page.keywords != empty %}
+  "keywords": {{ page.keywords | join: ", " | jsonify }},
+  {%- endif %}
+  "isPartOf": {
+    {%- if page.volume %}
+    "@type": "PublicationVolume",
+    "volumeNumber": {{ page.volume | jsonify }},
+    "isPartOf": { "@id": "{{ site.url }}/#periodical" }
+    {%- else %}
+    "@id": "{{ site.url }}/#periodical"
+    {%- endif %}
+  },
+  "publisher": { "@id": "{{ site.url }}/#org" },
+  "inLanguage": "en"
+}
+</script>

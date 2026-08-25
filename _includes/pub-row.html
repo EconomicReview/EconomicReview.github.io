@@ -1,0 +1,27 @@
+{%- comment -%} List row: motif thumbnail + full text block. Used when a
+listing has fewer than three items (a 3-up grid with one card looks broken)
+and in volume/issue archive listings. {%- endcomment -%}
+<article class="pub-row">
+  {% include cover.html pub=include.pub decorative=true %}
+  <div>
+    <div class="pub-card-meta">
+      {%- if include.pub.track -%}
+      <a class="track-label {{ include.pub.track }}" href="{% if include.pub.track == 'research' %}{{ '/research/' | relative_url }}{% else %}{{ '/perspectives/' | relative_url }}{% endif %}">{{ include.pub.track | capitalize }}</a>
+      {%- else -%}
+      <span class="missing-field">MISSING TRACK</span>
+      {%- endif -%}
+      <time datetime="{{ include.pub.date | date: '%Y-%m-%d' }}">{{ include.pub.date | date: "%-d %B %Y" }}</time>
+    </div>
+    <h3 class="pub-row-title"><a href="{{ include.pub.url | relative_url }}">{{ include.pub.title }}</a></h3>
+    {%- if include.pub.authors -%}
+    <p class="pub-authors">{% include authors-line.html pub=include.pub %}</p>
+    {%- else -%}
+    <p class="pub-authors"><span class="missing-field">MISSING AUTHORS</span></p>
+    {%- endif -%}
+    {%- if include.pub.card_excerpt -%}
+    <p class="pub-excerpt">{{ include.pub.card_excerpt }}</p>
+    {%- else -%}
+    <p class="pub-excerpt"><span class="missing-field">MISSING CARD_EXCERPT</span></p>
+    {%- endif -%}
+  </div>
+</article>

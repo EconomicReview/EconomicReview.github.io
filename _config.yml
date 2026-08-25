@@ -1,0 +1,100 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# The Economic Review at William & Mary
+# Built for GitHub Pages' native Jekyll 3.10 build. Six keys below are
+# mandatory — see CLAUDE.md ("Config keys you must never remove") before
+# touching any of them.
+# ─────────────────────────────────────────────────────────────────────────────
+
+title: "The Economic Review at William & Mary"
+description: >-
+  The undergraduate economics journal of William & Mary. Peer-reviewed
+  research and short-form Perspectives by W&M students, with written
+  feedback on every submission.
+lang: en
+
+# (1) url + (2) baseurl — user site, serves at the domain root.
+url: "https://economicreview.github.io"
+baseurl: ""
+
+# (3) theme: null — otherwise the github-pages gem silently injects
+# jekyll-theme-primer (its layouts + a stray /assets/css/style.css).
+theme: null
+
+# (4) future: true — GitHub's production builder forces future=true; a local
+# build defaults to false, so a future-dated publication would appear in
+# site.publications but build no HTML file (every link 404s). This makes
+# local and production match.
+future: true
+
+# (5) timezone — deadlines are US Eastern; without this, date comparisons run
+# in UTC and flip a day early.
+timezone: "America/New_York"
+
+# (6) repository — jekyll-github-metadata aborts a fresh local build without
+# it ("No repo name found").
+repository: "EconomicReview/EconomicReview.github.io"
+
+# Non-public files. jekyll-optional-front-matter is always on for GitHub
+# Pages, so any root-level .md not excluded here becomes a LIVE PAGE and
+# lands in sitemap.xml.
+exclude:
+  - CLAUDE.md
+  - ADD-A-PUBLICATION.md
+  - submission-form-spec.md
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - tools
+  - .gitignore
+
+# Opt-in plugins — every one is on GitHub's whitelist.
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-redirect-from
+  - jekyll-include-cache
+
+# ── Content model ────────────────────────────────────────────────────────────
+# One collection for both tracks; a `track` field distinguishes them.
+# Permalink uses :title (slug with the date prefix stripped), NOT :name
+# (which would leave the date in the URL — Jekyll only strips date prefixes
+# for _posts, not collections).
+collections:
+  publications:
+    output: true
+    permalink: /:collection/:title/
+
+# Mandatory: without a layout default, collection documents render as raw
+# unwrapped HTML.
+defaults:
+  - scope:
+      path: ""
+      type: "publications"
+    values:
+      layout: "publication"
+      seo:
+        type: "ScholarlyArticle"   # else jekyll-seo-tag types these BlogPosting
+  - scope:
+      path: ""
+    values:
+      image: "/assets/og/default.png"
+
+# ── Feeds ────────────────────────────────────────────────────────────────────
+# jekyll-feed only auto-generates a feed for _posts (which this site never
+# uses); the publications feed must be wired explicitly. /feed.xml is a
+# hand-written template in the repo root — see CLAUDE.md.
+feed:
+  collections:
+    publications:
+      path: "/feed/publications.xml"
+
+# ── Markdown ─────────────────────────────────────────────────────────────────
+markdown: kramdown
+kramdown:
+  input: GFM
+  smart_quotes: ["lsquo", "rsquo", "ldquo", "rdquo"]
+
+sass:
+  style: compressed

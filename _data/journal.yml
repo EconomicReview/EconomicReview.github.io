@@ -1,0 +1,16 @@
+# Core facts about the Review. Every template pulls identity from here —
+# never hardcode these in HTML.
+name: "The Economic Review at William & Mary"
+short_name: "The Economic Review"
+abbreviation: "WMER"
+institution: "William & Mary"
+academic_year: "2026–27"
+current_volume: 1
+contact_email: "economicreview@wm.edu"
+submission_form_url: "https://docs.google.com/forms/d/e/1FAIpQLSdALS8Hx2AypOnDOfjvfBuoq2ufPqYejVk9ry3uSGemFcNP6A/viewform"
+instagram_url: "https://www.instagram.com/wmeconomicreview/"
+linkedin_url: "https://www.linkedin.com/company/the-economic-review-at-william-mary"
+tribelink_url: "https://tribelink.wm.edu/organization/economicreview"
+# scholarworks_url: intentionally absent — the ScholarWorks collection does
+# not exist yet. When the library creates it, add the URL here and the About
+# page link will need updating too.

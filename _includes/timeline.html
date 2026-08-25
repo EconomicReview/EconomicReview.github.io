@@ -1,0 +1,19 @@
+{%- comment -%}
+  Dated timeline from _data/dates.yml.
+  Usage: {% include timeline.html tracks="research,all" %}
+  Past steps are dimmed server-side at build time and re-checked at page
+  view by main.js (via data-date).
+{%- endcomment -%}
+{%- assign wanted = include.tracks | split: "," -%}
+{%- assign now_epoch = site.time | date: "%s" | plus: 0 -%}
+<ol class="timeline">
+  {%- for d in site.data.dates -%}
+    {%- if wanted contains d.track -%}
+      {%- assign d_epoch = d.date | date: "%s" | plus: 108000 -%}
+      <li class="type-{{ d.type }}{% if d_epoch < now_epoch %} is-past{% endif %}" data-date="{{ d.date | date: '%Y-%m-%d' }}">
+        <span class="when"><time datetime="{{ d.datetime }}">{{ d.display }}</time></span>
+        <span class="what">{{ d.label }}</span>
+      </li>
+    {%- endif -%}
+  {%- endfor -%}
+</ol>

@@ -1,0 +1,30 @@
+{%- comment -%}
+  Nav items with `requires_track` are gated PER TRACK: the Research link only
+  exists once a research publication exists, and likewise for Perspectives.
+  A single global publication count would ship a "Research" link pointing at
+  an empty archive the day the first Perspectives piece publishes.
+{%- endcomment -%}
+{% assign research_count = site.publications | where: "track", "research" | size %}
+{% assign persp_count = site.publications | where: "track", "perspectives" | size %}
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="{{ '/' | relative_url }}">
+      <img class="brand-crest" src="{{ '/assets/brand/crest.svg' | relative_url }}" alt="" width="34" height="42">
+      <span>
+        <span class="brand-name">{{ site.data.journal.short_name }}</span>
+        <span class="brand-inst">at {{ site.data.journal.institution }}</span>
+      </span>
+    </a>
+    <nav class="site-nav" aria-label="Site">
+      {%- for item in site.data.nav -%}
+        {%- assign show = true -%}
+        {%- if item.requires_track == "research" and research_count == 0 -%}{%- assign show = false -%}{%- endif -%}
+        {%- if item.requires_track == "perspectives" and persp_count == 0 -%}{%- assign show = false -%}{%- endif -%}
+        {%- if show -%}
+          <a href="{{ item.url | relative_url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.label }}</a>
+        {%- endif -%}
+      {%- endfor -%}
+    </nav>
+    <button class="theme-toggle" type="button" hidden aria-pressed="false">Dark mode</button>
+  </div>
+</header>

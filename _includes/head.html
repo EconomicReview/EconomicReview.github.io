@@ -1,0 +1,53 @@
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {%- comment -%} Theme boots before CSS paints so a stored choice never flashes. {%- endcomment -%}
+  <script>(function(){try{var t=localStorage.getItem("wmer-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}})();</script>
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#FBFAF7">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0E1211">
+  {% seo %}
+  <link rel="preload" href="{{ '/assets/fonts/newsreader-var.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="{{ '/assets/fonts/inter-var.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+  <link rel="icon" href="{{ '/favicon.ico' | relative_url }}" sizes="32x32">
+  <link rel="icon" type="image/svg+xml" href="{{ '/assets/brand/crest.svg' | relative_url }}">
+  <link rel="icon" type="image/png" sizes="192x192" href="{{ '/assets/brand/favicon-192.png' | relative_url }}">
+  <link rel="apple-touch-icon" href="{{ '/assets/brand/apple-touch-icon.png' | relative_url }}">
+  {%- comment -%} jekyll-feed's {% raw %}{% feed_meta %}{% endraw %} only advertises the
+  posts feed, so the publications feed link is written by hand. {%- endcomment -%}
+  <link rel="alternate" type="application/atom+xml" title="{{ site.data.journal.short_name }} — publications" href="{{ '/feed/publications.xml' | absolute_url }}">
+  {%- if page.layout == "publication" %}
+  {% include citation-meta.html %}
+  {% include jsonld-article.html %}
+  {%- endif %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "{{ site.url }}/#org",
+        "name": {{ site.data.journal.name | jsonify }},
+        "url": "{{ site.url }}/",
+        "email": {{ site.data.journal.contact_email | jsonify }},
+        "logo": "{{ '/assets/brand/favicon-512.png' | absolute_url }}",
+        "sameAs": [
+          {{ site.data.journal.instagram_url | jsonify }},
+          {{ site.data.journal.linkedin_url | jsonify }},
+          {{ site.data.journal.tribelink_url | jsonify }}
+        ]
+      },
+      {
+        "@type": "Periodical",
+        "@id": "{{ site.url }}/#periodical",
+        "name": {{ site.data.journal.name | jsonify }},
+        "alternateName": {{ site.data.journal.abbreviation | jsonify }},
+        "url": "{{ site.url }}/",
+        "inLanguage": "en",
+        "publisher": { "@id": "{{ site.url }}/#org" }
+      }
+    ]
+  }
+  </script>
+</head>

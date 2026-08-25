@@ -1,0 +1,91 @@
+---
+layout: default
+title: "Research"
+permalink: /research/
+description: >-
+  Peer-reviewed research papers by William & Mary students, published by
+  The Economic Review and archived by volume and issue.
+---
+{%- assign items = site.publications | where: "track", "research" | sort: "date" | reverse -%}
+<div class="wrap">
+  <header class="page-head">
+    <p class="kicker">{{ site.data.journal.abbreviation }} · Research</p>
+    <h1>Research</h1>
+    <p class="lede">Full-length papers by W&amp;M students, selected by
+    double-blind review — two referees read every submission, and every
+    author receives written feedback.</p>
+  </header>
+
+  {%- if items.size == 0 -%}
+  {%- comment -%} State 0: the archive begins with Volume 1. Stated as fact,
+  never as “coming soon”. {%- endcomment -%}
+  <section class="section">
+    <div class="two-col">
+      <div class="body-copy">
+        <h2>The current call</h2>
+        <p>The Review is reading research submissions for
+        Volume {{ site.data.journal.current_volume }}
+        ({{ site.data.journal.academic_year }}). The next deadline is
+        <strong>{% include next-deadline.html track="research" %}</strong>;
+        papers submitted by then are anonymized, refereed, and decided within
+        the semester, and accepted papers appear in the
+        Volume {{ site.data.journal.current_volume }} issue and in this
+        archive.</p>
+        <p>Strong course papers, independent research, and honors thesis
+        chapters are all in scope — economics and adjacent fields, from any
+        W&amp;M student.</p>
+        <div class="btn-row">
+          <a class="btn" href="{{ '/submit/' | relative_url }}">Submission guidelines</a>
+        </div>
+      </div>
+      <div>
+        <h2>The review cycle</h2>
+        {% include timeline.html tracks="research,all" %}
+      </div>
+    </div>
+  </section>
+
+  {%- else -%}
+  {%- comment -%} States 1–2: a volume → issue archive, never pagination.
+  Items are date-desc, so group_by preserves newest-first volume and issue
+  order. {%- endcomment -%}
+  {%- assign volumes = items | group_by: "volume" -%}
+  {%- for vol in volumes %}
+  <section class="{% unless forloop.first %}section-rule {% endunless %}section">
+    {%- if vol.name != "" -%}
+    <h2 class="volume-head">Volume {{ vol.name }}</h2>
+    {%- else -%}
+    <h2 class="volume-head"><span class="missing-field">MISSING VOLUME</span></h2>
+    {%- endif -%}
+    {%- assign issues = vol.items | group_by: "issue" -%}
+    {%- for iss in issues %}
+      {%- if iss.name != "" -%}
+      <h3 class="issue-head">{{ iss.name }}</h3>
+      {%- else -%}
+      <h3 class="issue-head"><span class="missing-field">MISSING ISSUE</span></h3>
+      {%- endif -%}
+      {%- if iss.items.size < 3 -%}
+      <ul class="pub-list">
+        {%- for p in iss.items -%}
+        <li>{% include pub-row.html pub=p %}</li>
+        {%- endfor -%}
+      </ul>
+      {%- else -%}
+      <div class="pub-grid">
+        {%- for p in iss.items -%}
+        {% include pub-card.html pub=p %}
+        {%- endfor -%}
+      </div>
+      {%- endif -%}
+    {%- endfor %}
+  </section>
+  {%- endfor %}
+
+  <section class="section-rule">
+    <p class="body-copy">The Review is reading submissions for the next
+    issue — the deadline is
+    <strong>{% include next-deadline.html track="research" %}</strong>.
+    <a href="{{ '/submit/' | relative_url }}">Submission guidelines →</a></p>
+  </section>
+  {%- endif -%}
+</div>

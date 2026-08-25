@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 540" role="img" aria-label="Crest of The Economic Review at William &amp; Mary: a shield bearing a royal crown, a merchant's mark, and a gold sun on a black chevron field">
+  <defs>
+    <path id="shield" d="M 40 30 H 400 V 250 C 400 385 320 465 220 512 C 120 465 40 385 40 250 Z"/>
+    <clipPath id="shield-clip"><use href="#shield"/></clipPath>
+    <polygon id="ray" points="0,-78 10,-34 -10,-34"/>
+  </defs>
+
+  <use href="#shield" fill="#FFFFFF"/>
+
+  <g clip-path="url(#shield-clip)">
+    <!-- black field below the chevron -->
+    <path d="M 220 302 L 470 448 L 470 560 L -30 560 L -30 448 Z" fill="#111311"/>
+    <!-- green chevron band -->
+    <path d="M -30 455 L 220 295 L 470 455" fill="none" stroke="#004E38" stroke-width="34"/>
+
+    <!-- sun in splendour -->
+    <g transform="translate(220,405)">
+      <g fill="#B79257">
+        <use href="#ray"/>
+        <use href="#ray" transform="rotate(22.5)"/>
+        <use href="#ray" transform="rotate(45)"/>
+        <use href="#ray" transform="rotate(67.5)"/>
+        <use href="#ray" transform="rotate(90)"/>
+        <use href="#ray" transform="rotate(112.5)"/>
+        <use href="#ray" transform="rotate(135)"/>
+        <use href="#ray" transform="rotate(157.5)"/>
+        <use href="#ray" transform="rotate(180)"/>
+        <use href="#ray" transform="rotate(202.5)"/>
+        <use href="#ray" transform="rotate(225)"/>
+        <use href="#ray" transform="rotate(247.5)"/>
+        <use href="#ray" transform="rotate(270)"/>
+        <use href="#ray" transform="rotate(292.5)"/>
+        <use href="#ray" transform="rotate(315)"/>
+        <use href="#ray" transform="rotate(337.5)"/>
+      </g>
+      <circle r="40" fill="#C6A96B"/>
+      <!-- face -->
+      <g fill="none" stroke="#2A2415" stroke-width="3" stroke-linecap="round">
+        <path d="M -20 -10 Q -13 -16 -6 -10"/>
+        <path d="M 6 -10 Q 13 -16 20 -10"/>
+        <path d="M 0 -6 Q 3 2 0 8 Q -2 10 -4 8"/>
+        <path d="M -12 18 Q 0 26 12 18"/>
+      </g>
+      <ellipse cx="-13" cy="-6" rx="3" ry="4" fill="#2A2415"/>
+      <ellipse cx="13" cy="-6" rx="3" ry="4" fill="#2A2415"/>
+    </g>
+  </g>
+
+  <!-- shield border -->
+  <use href="#shield" fill="none" stroke="#004E38" stroke-width="14"/>
+
+  <!-- royal crown -->
+  <g transform="translate(138,148)" fill="#004E38">
+    <!-- arches -->
+    <path d="M -44 14 C -40 -22 -10 -32 0 -32 C 10 -32 40 -22 44 14"
+          fill="none" stroke="#004E38" stroke-width="13"/>
+    <!-- orb and cross at top -->
+    <circle cx="0" cy="-38" r="8"/>
+    <rect x="-3" y="-68" width="6" height="20" rx="1"/>
+    <rect x="-11" y="-61" width="22" height="6" rx="1"/>
+    <!-- cross pattée centre, on the band -->
+    <path d="M -5 -2 L -5 10 L -17 10 L -17 20 L -5 20 L -5 32 L 5 32 L 5 20 L 17 20 L 17 10 L 5 10 L 5 -2 Z"/>
+    <!-- fleurs-de-lis at the band ends -->
+    <g transform="translate(-52,10)">
+      <ellipse cx="0" cy="0" rx="6" ry="13"/>
+      <ellipse cx="-11" cy="9" rx="5" ry="10" transform="rotate(-35 -11 9)"/>
+      <ellipse cx="11" cy="9" rx="5" ry="10" transform="rotate(35 11 9)"/>
+      <rect x="-7" y="17" width="14" height="6" rx="2"/>
+    </g>
+    <g transform="translate(52,10)">
+      <ellipse cx="0" cy="0" rx="6" ry="13"/>
+      <ellipse cx="-11" cy="9" rx="5" ry="10" transform="rotate(-35 -11 9)"/>
+      <ellipse cx="11" cy="9" rx="5" ry="10" transform="rotate(35 11 9)"/>
+      <rect x="-7" y="17" width="14" height="6" rx="2"/>
+    </g>
+    <!-- band with circlet pearls -->
+    <circle cx="-34" cy="30" r="5"/>
+    <circle cx="-17" cy="28" r="5"/>
+    <circle cx="0" cy="27" r="5"/>
+    <circle cx="17" cy="28" r="5"/>
+    <circle cx="34" cy="30" r="5"/>
+    <rect x="-64" y="34" width="128" height="16" rx="5"/>
+    <!-- pearls below the band -->
+    <circle cx="-52" cy="58" r="4.5"/>
+    <circle cx="-26" cy="60" r="4.5"/>
+    <circle cx="0" cy="61" r="4.5"/>
+    <circle cx="26" cy="60" r="4.5"/>
+    <circle cx="52" cy="58" r="4.5"/>
+  </g>
+
+  <!-- merchant's mark -->
+  <g fill="none" stroke="#004E38" stroke-linecap="square" transform="translate(298,148)">
+    <path d="M -46 -26 C -44 -70 28 -82 42 -42 C 50 -18 44 -2 30 6 C 34 12 36 20 36 28 L 36 96" stroke-width="18"/>
+    <path d="M -4 58 L 80 58" stroke-width="16"/>
+  </g>
+</svg>

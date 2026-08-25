@@ -1,0 +1,11 @@
+# Overlay config for LAYOUT TESTING ONLY — never used in production.
+#
+#   bundle exec jekyll build --config _config.yml,_config.fixtures.yml
+#
+# It points the collections at fixtures-workbench/ (git-ignored, deleted
+# after testing) so populated-state layouts can be verified WITHOUT writing
+# fake articles into _publications/. Fixture content must be obviously
+# synthetic (FIXTURE-DO-NOT-SHIP titles, FIXTURE AUTHOR) so the placeholder
+# scan in §15 of the build checklist would catch any leak.
+collections_dir: fixtures-workbench
+destination: _site-fixtures
