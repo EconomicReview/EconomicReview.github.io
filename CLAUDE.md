@@ -233,6 +233,24 @@ file containing just the bare domain, set the DNS (CNAME record →
 `economicreview.github.io`), update `url:` in `_config.yml`, and update
 the `Sitemap:` line in `robots.txt`. Until then, no CNAME file.
 
+## Brand artwork
+
+The **source of truth** for the Review's identity is the artwork the
+Editor-in-Chief uploaded to `assets/brand/`:
+`New_Final_1_WMER_Crest.PNG` (the crest, 1080×1350, white background) and
+`WMER Linkedin banner.png` (the green wordmark square). Never redraw,
+regenerate, or "clean up" this artwork — earlier sessions tried a vector
+recreation and it was rejected for looking AI-made.
+
+Derived files, all generated from those originals (with PIL: flood-fill
+the exterior white to transparent, trim, downscale):
+`crest.png` (trimmed + transparent, used in the header/footer),
+`favicon-*.png` + `favicon.ico` (also copied to the repo root),
+`apple-touch-icon.png`, `wordmark.png` (copy of the banner), and
+`assets/og/default.png` (composited from the real crest + the banner's
+text strip). If the originals ever change, regenerate the derived set the
+same way.
+
 ## OG images
 
 GitHub Pages cannot rasterize at deploy time, so 1200×630 OG PNGs are
