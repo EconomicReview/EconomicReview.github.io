@@ -20,8 +20,8 @@
 - id: interest-meeting
   label: "Interest meeting"
   date: 2026-09-16
-  datetime: "2026-09-16"
-  display: "Week of 16 September 2026"
+  datetime: "2026-09"
+  display: "TBD"
   type: event
   track: all
 - id: reviewer-training
